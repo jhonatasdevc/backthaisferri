@@ -1,6 +1,7 @@
 import conect
 import login.verificar_token as verificar
 import conect
+from flask import jsonify
 
 def get_product(token, pagination, pagesize):
     token = verificar.verificar_token(token)
@@ -60,9 +61,10 @@ def get_product(token, pagination, pagesize):
 
         return result
     elif token == 'time expired':
-        print('tempo expirado')
+        return jsonify({'error': 'time expired'}), 401
     elif token == 'invalid':
-        print('invalid token')
+        return jsonify({'error': 'Login invalid'}), 401
+
 
 def get_productid(token, product):
     token = verificar.verificar_token(token)
@@ -92,9 +94,10 @@ def get_productid(token, product):
 
         return produto
     elif token == 'time expired':
-        print('tempo expirado')
+        return jsonify({'error': 'time expired'}), 401
     elif token == 'invalid':
-        print('invalid token')
+        return jsonify({'error': 'Login invalid'}), 401
+
 
 def insert_product(token, product_data):
     token = verificar.verificar_token(token)
@@ -127,9 +130,10 @@ def insert_product(token, product_data):
 
         return "cadastro realizado"
     elif token == 'time expired':
-        print('tempo expirado')
+        return jsonify({'error': 'time expired'}), 401
     elif token == 'invalid':
-        print('invalid token')
+        return jsonify({'error': 'Login invalid'}), 401
+
 
 def update_product(token, product_data):
     token = verificar.verificar_token(token)
@@ -177,6 +181,7 @@ def update_product(token, product_data):
 
         return product
     elif token == 'time expired':
-        print('tempo expirado')
+        return jsonify({'error': 'time expired'}), 401
     elif token == 'invalid':
-        print('invalid token')
+        return jsonify({'error': 'Login invalid'}), 401
+

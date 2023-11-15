@@ -1,6 +1,7 @@
 import conect
 import login.verificar_token as verificar
 import conect
+from flask import jsonify
 
 def get_stock(token):
     token = verificar.verificar_token(token)
@@ -29,9 +30,9 @@ def get_stock(token):
 
         return produtos
     elif token == 'time expired':
-        print('tempo expirado')
+        return jsonify({'error': 'time expired'}), 401
     elif token == 'invalid':
-        print('invalid token')
+        return jsonify({'error': 'Login invalid'}), 401
 
 def get_stockid(token, stock):
     token = verificar.verificar_token(token)
@@ -62,6 +63,6 @@ def get_stockid(token, stock):
 
         return produtos
     elif token == 'time expired':
-        print('tempo expirado')
+        return jsonify({'error': 'time expired'}), 401
     elif token == 'invalid':
-        print('invalid token')
+        return jsonify({'error': 'Login invalid'}), 401
